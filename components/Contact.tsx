@@ -1,224 +1,169 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-
-const socialLinks = [
-  {
-    icon: "📧",
-    title: "Email",
-    value: "hello@example.com",
-    desc: "Send me a message anytime",
-    href: "mailto:hello@example.com",
-    gradient: "from-gray-500 to-gray-300"
-  },
-  {
-    icon: "💼",
-    title: "LinkedIn",
-    value: "linkedin.com/in/username",
-    desc: "Let's connect professionally",
-    href: "https://linkedin.com/in/username",
-    gradient: "from-gray-600 to-gray-400"
-  },
-  {
-    icon: "🐙",
-    title: "GitHub",
-    value: "github.com/username",
-    desc: "Check out my open source work",
-    href: "https://github.com/username",
-    gradient: "from-gray-700 to-gray-500"
-  }
-]
+import Image from 'next/image'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! I\'ll get back to you soon.')
-    
-    setFormData({ name: '', email: '', message: '' })
-    setIsSubmitting(false)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+    // Handle form submission here
+    console.log('Form submitted')
   }
 
   return (
-    <section ref={sectionRef} id="contact" className="relative py-24 px-6">
-      <div className="container mx-auto max-w-7xl">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-[var(--font-space-grotesk)]">
-            <span className="bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 bg-clip-text text-transparent">
-              Get In Touch
-            </span>
-          </h2>
-          <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
-            Interested in collaborating? Let's discuss how we can work together on your next AI project.
-          </p>
-        </div>
+    <section
+      id="contact"
+      className="min-h-[90vh] flex items-center relative overflow-hidden bg-[#0a0a0a] text-[#fafaf6] border-y-4 border-[#a81616]/30 paper-texture-dark"
+    >
+      {/* Elegant Japanese background layering */}
+      <div className="absolute inset-0 opacity-30">
+        <Image
+          src="/kojiro3.png"
+          alt="Japanese landscape"
+          fill
+          className="object-cover object-center grayscale contrast-110 brightness-90"
+          priority
+        />
+      </div>
+      {/* Neutral gradient overlays - removed yellowish tones */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#0a0a0a] via-[#0f0f0f]/90 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0a]/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/40 via-transparent to-[#0a0a0a]/40"></div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div 
-            className="space-y-6"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateX(0)' : 'translateX(-30px)',
-              transition: 'all 0.6s ease'
-            }}
-          >
-            <h3 className="text-3xl font-bold text-white mb-8 font-[var(--font-space-grotesk)]">
-              Contact Information
-            </h3>
-            <div className="space-y-4">
-              {socialLinks.map((item, index) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-start gap-4 p-6 glass rounded-xl border border-white/10 hover:border-gray-400/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-gray-500/10"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible 
-                      ? 'translateX(0)' 
-                      : 'translateX(-30px)',
-                    transition: `all 0.6s ease ${index * 0.1}s`
-                  }}
-                >
-                  <div className={`text-4xl p-3 rounded-lg bg-gradient-to-br ${item.gradient} bg-opacity-20 group-hover:scale-110 transition-transform duration-300`}>
-                    {item.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-white mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-gray-200 group-hover:to-gray-400 transition-all">
-                      {item.title}
-                    </h4>
-                    <p className="text-gray-300 group-hover:text-white transition-colors">{item.value}</p>
-                    <p className="text-gray-500 text-sm mt-1">{item.desc}</p>
-                  </div>
-                  <span className="text-gray-400 group-hover:text-gray-300 group-hover:translate-x-1 transition-all">→</span>
-                </a>
-              ))}
+      {/* Subtle animated ink splatters */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-red-900/40 rounded-full blur-2xl animate-ink-pulse"></div>
+        <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-red-700/25 rounded-full blur-lg animate-ink-pulse-slow"></div>
+        <div className="absolute bottom-16 left-2/3 w-3 h-3 bg-red-900/20 rounded-full blur-md animate-ink-drift"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-20 items-center">
+        {/* Left: Contact Information, Japanese styled */}
+        <div className="space-y-10 pt-8 md:pt-0 ink-reveal">
+          <div className="flex items-center gap-6">
+            <span
+              className="text-[#a81616] text-5xl md:text-7xl font-light vert-jp"
+              style={{
+                fontFamily: 'serif',
+                letterSpacing: '0.2em',
+                writingMode: 'vertical-rl',
+                fontWeight: 400,
+              }}
+            >
+              連絡先
+            </span>
+            <h2 className="text-5xl md:text-7xl font-jp-black font-bold text-white ink-shadow drop-shadow-lg tracking-tight">
+              Contact
+            </h2>
+          </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#a81616] via-[#e3cec7]/60 to-transparent rounded shadow-red-900 mb-2"></div>
+          <p className="text-lg md:text-2xl text-neutral-200 max-w-lg leading-relaxed italic fade-in-up px-1 border-l-4 border-[#a81616]/60 pl-6">
+            <span lang="ja" className="block text-base text-red-800 font-jp mb-2 opacity-80">お茶をどうぞ。未来の話をしましょう。</span>
+            <span className="block">"Avaliable for jobs, hobby projects, or just a chat."</span>
+          </p>
+          {/* Email */}
+          <div className="pt-8 flex flex-col gap-4">
+            <div className="flex items-center gap-4 group">
+              <span className="text-[#e95e5e] text-3xl transition-transform group-hover:scale-110">✉</span>
+              <a
+                href="mailto:hello@example.com"
+                className="text-2xl md:text-3xl text-white underline decoration-[#a81616]/60 underline-offset-8 hover:text-[#a81616] transition-all"
+              >
+                hello@example.com
+              </a>
+            </div>
+            {/* Social links */}
+            <div className="flex gap-3 pt-2">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="jap-shadow rounded-lg bg-[#fafaf6]/5 border-2 border-[#a81616]/40 px-5 py-2 text-sm uppercase tracking-widest font-bold hover:bg-[#a81616] hover:text-white hover:border-[#c82525] transition-all duration-200"
+              >
+                <span className="mr-1 text-lg align-middle">🐙</span> GitHub
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="jap-shadow rounded-lg bg-[#fafaf6]/5 border-2 border-[#a81616]/40 px-5 py-2 text-sm uppercase tracking-widest font-bold hover:bg-[#a81616] hover:text-white hover:border-[#c82525] transition-all duration-200"
+              >
+                <span className="mr-1 text-lg align-middle">💼</span> LinkedIn
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="jap-shadow rounded-lg bg-[#fafaf6]/5 border-2 border-[#a81616]/40 px-5 py-2 text-sm uppercase tracking-widest font-bold hover:bg-[#a81616] hover:text-white hover:border-[#c82525] transition-all duration-200"
+              >
+                <span className="mr-1 text-lg align-middle">🐦</span> Twitter
+              </a>
             </div>
           </div>
+        </div>
 
-          {/* Contact Form */}
-          <div 
-            className="glass rounded-2xl border border-white/10 p-8 lg:p-10"
+        {/* Right: Contact Form with Japanese touches */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-[#231f1f]/70 rounded-2xl p-10 lg:p-14 shadow-xl border-2 border-[#a81616]/30 backdrop-blur-md space-y-8 ink-shade relative"
+          style={{
+            boxShadow: '0 12px 40px 0 rgba(40,10,10,0.16), 0 0px 3px 1px #a8161622',
+          }}
+        >
+          <span
+            className="absolute -top-5 left-7 text-2xl px-2 py-1 bg-[#a81616]/90 text-white rounded shadow-lg tracking-widest border border-[#df4242]/50 font-jp"
             style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateX(0)' : 'translateX(30px)',
-              transition: 'all 0.6s ease 0.2s'
+              fontFamily: 'serif',
+              letterSpacing: '0.22em',
             }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-gray-300 mb-2 font-medium">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-5 py-4 glass border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-gray-400/50 focus:ring-2 focus:ring-gray-500/20 transition-all duration-300 bg-black/20"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-5 py-4 glass border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-gray-400/50 focus:ring-2 focus:ring-gray-500/20 transition-all duration-300 bg-black/20"
-                  placeholder="your.email@example.com"
-                  required
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-gray-300 mb-2 font-medium">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={5}
-                  className="w-full px-5 py-4 glass border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-gray-400/50 focus:ring-2 focus:ring-gray-500/20 transition-all duration-300 resize-none bg-black/20"
-                  placeholder="Tell me about your project..."
-                  required
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="group w-full px-8 py-4 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 rounded-xl font-semibold text-white hover:shadow-2xl hover:shadow-gray-500/50 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 border border-gray-500/30"
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Send Message</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </>
-                )}
-              </button>
-            </form>
+            信
+          </span>
+          <div className="group mb-4">
+            <label className="block text-sm font-bold tracking-wide text-[#bda1a1] mb-2 group-focus-within:text-[#a81616] duration-200 transition-all font-jp">
+              名前 <span className="ml-1 text-xs">(Name)</span>
+            </label>
+            <input
+              type="text"
+              name="name"
+              className="w-full bg-transparent border-b-2 border-[#bba6a6]/40 py-3 px-1 focus:border-[#a81616] outline-none transition-all font-jp-shadow focus:bg-[#fafaf610] text-lg text-neutral-100"
+              required
+              placeholder="Your name"
+            />
           </div>
-        </div>
+          <div className="group mb-4">
+            <label className="block text-sm font-bold tracking-wide text-[#bda1a1] mb-2 group-focus-within:text-[#a81616] duration-200 transition-all font-jp">
+              メッセージ <span className="ml-1 text-xs">(Message)</span>
+            </label>
+            <textarea
+              name="message"
+              rows={6}
+              className="w-full bg-transparent border-b-2 border-[#bba6a6]/40 py-3 px-1 focus:border-[#a81616] outline-none transition-all font-jp-shadow focus:bg-[#fafaf610] text-lg text-neutral-100 resize-y"
+              required
+              placeholder="Compose your thoughts..."
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-[#a81616] hover:bg-[#e44c4c] active:bg-[#891616] transition-all text-lg text-white font-bold tracking-widest rounded-lg drop-shadow-2xl stroke-font relative jap-shadow group ring-2 ring-[#a81616]/20"
+          >
+            <span className="hanko border-[#fff]/60 bg-[#e6dddd]/10 text-[#fff] w-6 h-6 text-xl font-semibold flex items-center justify-center rounded-full shadow-sm border mr-2 scale-110 group-hover:scale-125 transition-transform">信</span>
+            <span className="font-jp tracking-wide">Send Transmission</span>
+          </button>
+        </form>
+      </div>
+
+      {/* corner stamp for Japanese authenticity */}
+      <div
+        className="absolute bottom-6 right-8 z-20 opacity-60 pointer-events-none select-none"
+      >
+        <span
+          className="hanko text-[#a81616] text-3xl font-jp"
+          style={{ fontFamily: 'serif', letterSpacing: '0.3em', writingMode: 'vertical-rl' }}
+        >
+          和敬清寂
+        </span>
       </div>
     </section>
   )
 }
+

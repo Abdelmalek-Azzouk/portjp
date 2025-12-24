@@ -145,15 +145,7 @@ export default function Hero() {
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
           </button>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="mt-20 flex flex-col items-center gap-2 animate-bounce">
-          <span className="text-gray-400 text-sm">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center p-2">
-            <div className="w-1 h-3 bg-gradient-to-b from-gray-300 to-gray-400 rounded-full"></div>
-          </div>
-        </div>
+        </div>  
       </div>
 
       {/* Floating particles effect */}
