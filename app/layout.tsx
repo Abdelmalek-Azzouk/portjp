@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Kojiro | Ronin Developer',
+  title: 'Malek | AI Developer',
   description: 'Traditional Japanese aesthetic portfolio',
 }
 

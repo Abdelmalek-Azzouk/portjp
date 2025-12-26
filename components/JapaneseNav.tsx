@@ -12,10 +12,10 @@ export default function JapaneseNav() {
   }, [])
 
   const navItems = [
-    { name: 'About', href: '#about', kanji: '私' },
-    { name: 'Skills', href: '#skills', kanji: '道' },
-    { name: 'Experience', href: '#experience', kanji: '技' },
-    { name: 'Projects', href: '#projects', kanji: '作' },
+    { name: 'About', href: '#about', kanji: <span className="inline-block w-3 h-3 rounded-full bg-black opacity-60 group-hover:opacity-90 transition-all duration-400"></span> },
+    { name: 'Skills', href: '#skills', kanji: <span className="inline-block w-3 h-3 rounded-full bg-black opacity-60 group-hover:opacity-90 transition-all duration-400"></span> },
+    { name: 'Experience', href: '#experience', kanji: <span className="inline-block w-3 h-3 rounded-full bg-black opacity-60 group-hover:opacity-90 transition-all duration-400"></span> },
+    { name: 'Projects', href: '#projects', kanji: <span className="inline-block w-3 h-3 rounded-full bg-black opacity-60 group-hover:opacity-90 transition-all duration-400"></span> },
   ]
 
   const scrollTo = (e: React.MouseEvent, id: string) => {
@@ -29,8 +29,8 @@ export default function JapaneseNav() {
     }`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <a href="#" onClick={(e) => scrollTo(e, '#home')} className="group flex items-center gap-3 ink-reveal">
-          <span className="hanko w-11 h-11 text-base bg-white shadow-japanese">侍</span>
-          <span className="font-bold tracking-[0.2em] text-neutral-800 group-hover:text-red-800 transition-all duration-400 text-lg ink-shadow">KOJIRO</span>
+          <span className="hanko w-11 h-11 text-base bg-white shadow-japanese"> </span>
+          <span className="font-bold tracking-[0.2em] text-neutral-800 group-hover:text-red-800 transition-all duration-400 text-lg ink-shadow">MALEK</span>
         </a>
 
         <div className="hidden md:flex items-center gap-10">

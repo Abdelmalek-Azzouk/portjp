@@ -3,11 +3,11 @@
 const projects = [
   {
     id: 1,
-    title: "Vision System",
+    title: "Binary Classification",
     category: "Computer Vision",
-    desc: "Real-time object detection using YOLO architecture. Implementing advanced neural networks for industrial precision.",
-    tech: ["Python", "PyTorch", "OpenCV"],
-    kanji: "視" // Sight
+    desc: "Melanoma Detection System using convolutional neural networks, and transformers.",
+    tech: ["Python", "PyTorch", "TensorFlow", "CNNs", "Transformers"],
+    link: "https://huggingface.co/Melidk/Melanoma_Classification"
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const projects = [
     category: "Deep Learning",
     desc: "Time series forecasting for market trends using LSTM networks. Achieving high accuracy in chaotic data environments.",
     tech: ["TensorFlow", "LSTM", "Pandas"],
-    kanji: "予" // Predict
+    link: "/projects/predictive-analytics"
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ const projects = [
     category: "Natural Language",
     desc: "Conversational agent using Transformer architecture. Fine-tuned on specialized datasets for human-like interaction.",
     tech: ["Transformers", "FastAPI", "Docker"],
-    kanji: "言" // Word
+    link: "/projects/nlp-chatbot"
   },
   {
     id: 4,
@@ -31,9 +31,13 @@ const projects = [
     category: "MLOps",
     desc: "Unsupervised learning system for detecting fraudulent patterns in real-time transaction streams.",
     tech: ["Isolation Forest", "AWS", "Kafka"],
-    kanji: "防" // Defend
+    link: "/projects/anomaly-detection"
   }
 ]
+
+function isExternalLink(link: string) {
+  return /^https?:\/\//.test(link)
+}
 
 export default function ProjectsScroll() {
   return (
@@ -50,10 +54,7 @@ export default function ProjectsScroll() {
               </h3>
               <div className="w-20 h-0.5 bg-red-800/50 group-hover:w-32 group-hover:bg-red-800 transition-all duration-500"></div>
             </div>
-            {/* Enhanced Stamp Effect */}
-            <div className="hidden md:flex h-16 w-16 border-4 border-neutral-300 text-neutral-400 items-center justify-center text-3xl font-serif rounded-full group-hover:border-red-800 group-hover:text-red-800 transition-all duration-500 group-hover:scale-110 shadow-japanese hover:shadow-japanese-hover hanko">
-              {project.kanji}
-            </div>
+            {/* Stamp Effect Removed - Kanji deleted */}
           </div>
 
           <p className="mt-8 text-neutral-700 leading-relaxed max-w-2xl text-lg mb-8">
@@ -69,9 +70,15 @@ export default function ProjectsScroll() {
           </div>
 
           <div className="mt-10 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-            <span className="text-base font-semibold border-b-2 border-red-800 text-red-900 pb-2 cursor-pointer hover:border-red-900 transition-colors inline-flex items-center gap-2">
-              Examine Code <span className="transition-transform group-hover:translate-x-1">→</span>
-            </span>
+            <a
+              href={project.link}
+              className="text-base font-semibold border-b-2 border-red-800 text-red-900 pb-2 cursor-pointer hover:border-red-900 transition-colors inline-flex items-center gap-2"
+              {...(isExternalLink(project.link)
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              Examine <span className="transition-transform group-hover:translate-x-1">→</span>
+            </a>
           </div>
         </div>
       ))}

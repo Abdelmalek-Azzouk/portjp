@@ -15,9 +15,9 @@ export default function Contact() {
       className="min-h-[90vh] flex items-center relative overflow-hidden bg-[#0a0a0a] text-[#fafaf6] border-y-4 border-[#a81616]/30 paper-texture-dark"
     >
       {/* Elegant Japanese background layering */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-50">
         <Image
-          src="/kojiro3.png"
+          src="/bgg3.jpg"
           alt="Japanese landscape"
           fill
           className="object-cover object-center grayscale contrast-110 brightness-90"
@@ -37,27 +37,17 @@ export default function Contact() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-20 items-center">
-        {/* Left: Contact Information, Japanese styled */}
+        {/* Left: Contact Information */}
         <div className="space-y-10 pt-8 md:pt-0 ink-reveal">
           <div className="flex items-center gap-6">
-            <span
-              className="text-[#a81616] text-5xl md:text-7xl font-light vert-jp"
-              style={{
-                fontFamily: 'serif',
-                letterSpacing: '0.2em',
-                writingMode: 'vertical-rl',
-                fontWeight: 400,
-              }}
-            >
-              連絡先
-            </span>
+            {/* Removed Japanese letters */}
             <h2 className="text-5xl md:text-7xl font-jp-black font-bold text-white ink-shadow drop-shadow-lg tracking-tight">
               Contact
             </h2>
           </div>
           <div className="w-24 h-1 bg-gradient-to-r from-[#a81616] via-[#e3cec7]/60 to-transparent rounded shadow-red-900 mb-2"></div>
           <p className="text-lg md:text-2xl text-neutral-200 max-w-lg leading-relaxed italic fade-in-up px-1 border-l-4 border-[#a81616]/60 pl-6">
-            <span lang="ja" className="block text-base text-red-800 font-jp mb-2 opacity-80">お茶をどうぞ。未来の話をしましょう。</span>
+            {/* Removed Japanese phrase */}
             <span className="block">"Avaliable for jobs, hobby projects, or just a chat."</span>
           </p>
           {/* Email */}
@@ -101,7 +91,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right: Contact Form with Japanese touches */}
+        {/* Right: Contact Form */}
         <form
           onSubmit={handleSubmit}
           className="bg-[#231f1f]/70 rounded-2xl p-10 lg:p-14 shadow-xl border-2 border-[#a81616]/30 backdrop-blur-md space-y-8 ink-shade relative"
@@ -109,18 +99,10 @@ export default function Contact() {
             boxShadow: '0 12px 40px 0 rgba(40,10,10,0.16), 0 0px 3px 1px #a8161622',
           }}
         >
-          <span
-            className="absolute -top-5 left-7 text-2xl px-2 py-1 bg-[#a81616]/90 text-white rounded shadow-lg tracking-widest border border-[#df4242]/50 font-jp"
-            style={{
-              fontFamily: 'serif',
-              letterSpacing: '0.22em',
-            }}
-          >
-            信
-          </span>
+          {/* Removed Japanese seal/letter */}
           <div className="group mb-4">
             <label className="block text-sm font-bold tracking-wide text-[#bda1a1] mb-2 group-focus-within:text-[#a81616] duration-200 transition-all font-jp">
-              名前 <span className="ml-1 text-xs">(Name)</span>
+              Name
             </label>
             <input
               type="text"
@@ -132,7 +114,7 @@ export default function Contact() {
           </div>
           <div className="group mb-4">
             <label className="block text-sm font-bold tracking-wide text-[#bda1a1] mb-2 group-focus-within:text-[#a81616] duration-200 transition-all font-jp">
-              メッセージ <span className="ml-1 text-xs">(Message)</span>
+              Message
             </label>
             <textarea
               name="message"
@@ -146,7 +128,8 @@ export default function Contact() {
             type="submit"
             className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-[#a81616] hover:bg-[#e44c4c] active:bg-[#891616] transition-all text-lg text-white font-bold tracking-widest rounded-lg drop-shadow-2xl stroke-font relative jap-shadow group ring-2 ring-[#a81616]/20"
           >
-            <span className="hanko border-[#fff]/60 bg-[#e6dddd]/10 text-[#fff] w-6 h-6 text-xl font-semibold flex items-center justify-center rounded-full shadow-sm border mr-2 scale-110 group-hover:scale-125 transition-transform">信</span>
+            {/* Removed Japanese character in button, kept visual structure */}
+            <span className="hanko border-[#fff]/60 bg-[#e6dddd]/10 text-[#fff] w-6 h-6 text-xl font-semibold flex items-center justify-center rounded-full shadow-sm border mr-2 scale-110 group-hover:scale-125 transition-transform"></span>
             <span className="font-jp tracking-wide">Send Transmission</span>
           </button>
         </form>
@@ -156,12 +139,7 @@ export default function Contact() {
       <div
         className="absolute bottom-6 right-8 z-20 opacity-60 pointer-events-none select-none"
       >
-        <span
-          className="hanko text-[#a81616] text-3xl font-jp"
-          style={{ fontFamily: 'serif', letterSpacing: '0.3em', writingMode: 'vertical-rl' }}
-        >
-          和敬清寂
-        </span>
+        {/* Removed Japanese letters for authenticity stamp */}
       </div>
     </section>
   )
