@@ -45,7 +45,7 @@ export default function Home() {
                 <div className="brush-divider w-40 mb-10"></div>
                 <p className="max-w-md text-neutral-700 leading-relaxed mb-10 text-lg fade-in-up" style={{ animationDelay: '0.4s' }}>
                   I am a masters computer science student, sepcialized in
-                  machine learning, deep learning, automation.
+                  machine learning, deep learning and automation.
                 </p>
                 <a
                   href="/AZZOUK_Abdelmalek_CV.pdf"
@@ -140,7 +140,7 @@ export default function Home() {
       <section id="projects" className="py-32 bg-[#e8e6df] min-h-screen paper-texture">
         <div className="container mx-auto px-6 max-w-5xl">
            <div className="flex justify-between items-end mb-20 border-b-3 border-neutral-300 pb-8">
-             <h2 className="text-5xl md:text-7xl font-bold text-neutral-900 ink-shadow">Great Works</h2>
+             <h2 className="text-5xl md:text-7xl font-bold text-neutral-900 ink-shadow">My Works</h2>
              <span className="vertical-text text-3xl text-red-800 font-bold hidden md:block opacity-70"></span>
            </div>
            <ProjectsScroll />

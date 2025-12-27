@@ -8,13 +8,12 @@ import {
   siKeras,
   siPython,
   siReact,
-  siDocker,     // <-- fixed
+  siDocker,
   siTypescript,
   siPandas,
   siNumpy,
   siPlotly
 } from 'simple-icons'
-
 
 const skillIconMap: Record<string, any> = {
   TensorFlow: siTensorflow,
@@ -23,13 +22,12 @@ const skillIconMap: Record<string, any> = {
   Keras: siKeras,
   Python: siPython,
   React: siReact,
-  Docker: siDocker,     // <-- fixed
+  Docker: siDocker,
   TypeScript: siTypescript,
   Pandas: siPandas,
   NumPy: siNumpy,
   Plotly: siPlotly
 }
-
 
 const skillCategories = [
   {
@@ -58,14 +56,32 @@ const skillCategories = [
   }
 ]
 
+// Ceramic-like border style for cards and chips
+const ceramicBorder = {
+  border: '2.5px solid',
+  borderImage: 'linear-gradient(135deg, #ede5d7 60%, #d6cbc0 70%, #ede5d7 100%) 1',
+  borderRadius: '1.7rem',
+  // soft highlight & light shadow using filter
+  boxShadow: '0 3px 18px 2px rgba(170,140,100,0.06), 0 0.5px 0.5px #eee'
+}
+
+const ceramicInnerBorder = {
+  border: '1.5px solid',
+  borderImage: 'linear-gradient(120deg,#ece0d8 60%,#baaba2 90%,#ece0d8 100%) 1',
+  borderRadius: '1em'
+}
+
 export default function SkillsScroll() {
   return (
     <div className="grid md:grid-cols-2 gap-8">
       {skillCategories.map((cat, idx) => (
         <div
           key={idx}
-          className="bg-white/70 p-10 relative overflow-hidden group hover:shadow-japanese-hover transition-all duration-500 shadow-japanese border border-neutral-200/60 paper-texture wabi-sabi fade-in-up"
-          style={{ animationDelay: `${idx * 0.15}s` }}
+          className="bg-white/70 p-10 relative overflow-hidden group hover:shadow-japanese-hover transition-all duration-500 paper-texture wabi-sabi fade-in-up"
+          style={{
+            animationDelay: `${idx * 0.15}s`,
+            ...ceramicBorder
+          }}
         >
           {/* Ink background */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-23 transition-opacity duration-700 pointer-events-none">
@@ -87,12 +103,14 @@ export default function SkillsScroll() {
           <div className="flex flex-wrap gap-3 relative z-10">
             {cat.skills.map((skill, skillIdx) => {
               const icon = skillIconMap[skill]
-
               return (
                 <span
                   key={skill}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-white/90 border border-neutral-300 text-sm text-neutral-700 hover:border-red-800 hover:text-red-900 transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
-                  style={{ transitionDelay: `${skillIdx * 0.05}s` }}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-white/90 text-sm text-neutral-700 hover:border-red-800 hover:text-red-900 transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
+                  style={{
+                    transitionDelay: `${skillIdx * 0.05}s`,
+                    ...ceramicInnerBorder
+                  }}
                 >
                   {icon && (
                     <svg

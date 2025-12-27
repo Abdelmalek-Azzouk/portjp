@@ -48,7 +48,7 @@ export default function Contact() {
           <div className="w-24 h-1 bg-gradient-to-r from-[#a81616] via-[#e3cec7]/60 to-transparent rounded shadow-red-900 mb-2"></div>
           <p className="text-lg md:text-2xl text-neutral-200 max-w-lg leading-relaxed italic fade-in-up px-1 border-l-4 border-[#a81616]/60 pl-6">
             {/* Removed Japanese phrase */}
-            <span className="block">"Avaliable for jobs, hobby projects, or just a chat."</span>
+            <span className="block">"Avaliable for jobs or hobby projects"</span>
           </p>
           {/* Email */}
           <div className="pt-8 flex flex-col gap-4">
